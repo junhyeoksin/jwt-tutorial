@@ -12,15 +12,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers(  // 관련된 것들은 무시
-                        "h2-console/**"
-                        , "/favicon.ico"
-                );
-    }
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web
+//                .ignoring()
+//                .antMatchers(  // 하위에 있는 것들은 무시함
+//                        "h2-console/**"
+//                        , "/favicon.ico"
+//                );
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
