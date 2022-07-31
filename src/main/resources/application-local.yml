@@ -1,0 +1,135 @@
+# 스프링 속성
+# 기본 환경 설정
+
+#################################
+#  START_DEV
+#################################
+# ===============================
+# = Embedded Server Config
+# ===============================
+server:
+
+  # Server Port
+  port: 8080
+
+  # whitelabel 기본 오류 페이지 비활성화
+  error:
+    whitelabel:
+      enabled: false
+    # Default /error
+  #    path: /error
+
+  # Spring boot 2.x session timeout
+  servlet:
+    session:
+      # Default 30m
+      timeout: 10m
+
+# ===============================
+# = Spring Config
+# ===============================
+spring:
+
+  devtools:
+    livereload:
+      enabled: true
+
+    # 서버를 재시작 하지않고 수정된 내용이 반영
+    restart:
+      enabled: false
+
+  # Cache 비활성화
+#  thymeleaf:
+#    prefix: file:src/main/resources/templates/
+#    cache: false
+
+  # ===============================
+  # = SERVLET
+  # ===============================
+  # Default 50MB
+  servlet:
+#    multipart:
+#      # MULTIPART 사용
+#      enabled: true
+#      # 디스크에 파일을 쓰는 값
+#      file-size-threshold: 2KB
+#      # 최대 파일 message
+#      max-file-size: 50MB
+#      # 최대 요청 크기
+#      max-request-size: 50MB
+
+  # ===============================
+  # = DATA SOURCE (MARIADB)
+  # ===============================
+  datasource:
+    # 기본 DB
+    url: jdbc:mariadb://130.162.150.100:3306/jjdb
+    username: root
+    password: 1233
+
+#    url: jdbc:mariadb://znzn.synology.me:3307/jjbank
+#    username: n2soft
+#    password: Nn4240nn!@
+
+#    datasource:
+#      p6spy:
+#        enable-logging: true
+#        multiline: true
+
+  # ===============================
+  # = JPA / HIBERNATE
+  # ===============================
+  # SQL 문장의 로깅 활성화
+  jpa:
+    show-sql: true
+
+    # DDL 모드
+    # create  : 기존테이블 삭제 후 다시 생성
+    # create-drop: create 와 같으나 종료시점에 테이블 DROP
+    # update: 변경분만 반영
+    # validate: 엔티티와 테이블이 정상 매핑되었는지만 확인
+    # none: 사용하지 않음
+    hibernate:
+      ddl-auto: validate
+#      ddl-auto: create
+
+
+    # 시작시 스키마 초기화
+    generate-ddl: false
+
+    # CONSOLE 에 SQL 문을 가독성있게 표시
+    properties:
+      hibernate:
+        format_sql: true
+
+        show_sql: true
+
+        # HINT 표시
+        use_sql_comments: true
+
+        # in으로 조회해버린다. 1000개 단위로 (max 1000 db에 따라 다르다.)
+        # 100~1000개가 좋다.
+        default_batch_fetch_size: 1000
+
+        # SQL 언어 MariaDB (자동 추가)
+        # dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+#mybatis:
+#  mapper-locations: mapper/**/*.xml
+
+# ===============================
+# = Cypher Secure Key
+# ===============================
+#cypher:
+#  basic: JJSBBANK01
+#  opening: OPEJJSBBANK01
+#  transfer: TRAJJSBBANK01
+#  one-transfer: ONETRAJJSBBANK01
+#  password: PWDJJSBBANK01
+jwt:
+  header: Authorization
+  #HS512 알고리즘을 사용할 것이기 때문에 512bit, 즉 64byte 이상의 secret key를 사용해야 한다.
+  #echo 'silvernine-tech-spring-boot-jwt-tutorial-secret-silvernine-tech-spring-boot-jwt-tutorial-secret'|base64
+  secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
+  token-validity-in-seconds: 86400
+
