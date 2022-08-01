@@ -1,9 +1,11 @@
 package me.hyeok.jwttutorial.entity;
-
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,12 +17,12 @@ import java.util.Set;
 @NoArgsConstructor
 public class User {
 
-    @Id
-    @Column(name = "user_id")
+    @Id // primaryKey 임을 알립니다.
+    @Column(name = "user_id", length = 20)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
-    @Column(name = "username", length = 50, unique = true)
+    @Column(name = "user_name", length = 50, unique = true, nullable = false)
     private String username;
 
     @Column(name = "password", length = 100)
